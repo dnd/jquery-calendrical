@@ -336,8 +336,6 @@
     {
         options = options || {};
         options = $.extend({padding: 4, syncEndDate: true}, options);
-        //options.padding = options.padding || 4;
-        //options.syncEndDate = options.syncEndDate || true;
         
         return this.each(function() {
             var element = $(this);

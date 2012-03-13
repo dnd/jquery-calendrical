@@ -371,14 +371,17 @@
                         selected: selected,
                         selectDate: function(date) {
                             within = false;
-                            element.val(formatDate(date, options)).change();
+                            var formattedStartDate = formatDate(date, options);
+                            element.val(formattedStartDate).change();
                             div.remove();
                             div = null;
                             if (options.endDate) {
                                 var endDate = parseDate(
                                     options.endDate.val(), options
                                 );
-                                if (endDate >= selected) {
+                                if (isNaN(endDate.getTime())) {
+                                    options.endDate.val(formattedStartDate);
+                                } else if (endDate >= selected) {
                                     options.endDate.val(formatDate(
                                         new Date(
                                             date.getTime() +

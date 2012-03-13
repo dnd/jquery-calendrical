@@ -335,7 +335,9 @@
     $.fn.calendricalDate = function(options)
     {
         options = options || {};
-        options.padding = options.padding || 4;
+        options = $.extend({padding: 4, syncEndDate: true}, options);
+        //options.padding = options.padding || 4;
+        //options.syncEndDate = options.syncEndDate || true;
         
         return this.each(function() {
             var element = $(this);
@@ -375,7 +377,7 @@
                             element.val(formattedStartDate).change();
                             div.remove();
                             div = null;
-                            if (options.endDate) {
+                            if (options.endDate && options.syncEndDate) {
                                 var endDate = parseDate(
                                     options.endDate.val(), options
                                 );
